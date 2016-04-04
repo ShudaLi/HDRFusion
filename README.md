@@ -42,7 +42,9 @@ in the source codes.
 - compile project "multi_expo_caputurer" and "calc_crf" by following the following instructions.
 
 	a. refer to "calibration\Windows.txt" for compilation on windows
+	
 	b. refer to "calibration\Ubuntu.txt" for compilation on ubuntu
+
 - execute "multi_expo_caputurer" to capture multi-exposure images: 
 
 	a. a folder named as the serial number of the sensor will be created. The multi-exposure images are stored inside. 
