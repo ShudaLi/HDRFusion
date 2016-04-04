@@ -1,7 +1,19 @@
 # HDRFusion
 A C++ implementation of our paper "HDRFusion: HDR SLAM using a low-cost auto-exposure RGB-D sensor"
 
-Instructions on calibration
+For more details, please refer the project pages at https://lishuda.wordpress.com/
+
+-------------------------------------------------------------------------------
+
+## License
+
+The source code is released under the MIT license. In short, you can do 
+anything with the code for any purposes. For details please view the license file 
+in the source codes.
+
+-------------------------------------------------------------------------------
+
+## Instructions on calibration
 
 1. compile project "multi_expo_caputurer" and "calc_crf" by following the following instructions.
 	a. refer to Windows.txt for compilation on windows
@@ -21,7 +33,9 @@ Instructions on calibration
 	b. it will produce a "crf.yml" where all parameters are stored in. 
 	c. copy it into the folder of "hdr_fusion//data//serial_number//"
 	
-Instructions on HDRFusion
+-------------------------------------------------------------------------------
+	
+## Instructions on HDRFusion
 
 1. compile library "rgbd" and project "hdr_fusion_main" by following the documents:
 	a. refer to Windows.txt for compilation on windows
