@@ -25,7 +25,7 @@ Instructions on HDRFusion
 	'p': pause the HDRFusion
 	'l': switch on/off colour
 	'T': switch on/off tone mapping operation
-5. synthetic dataset are also available on request. The synthetic datasets are stored ".png" files. To load into HDRFusion is trivial and therefore not provided.
+5. synthetic dataset are also available. The synthetic datasets are stored ".png" files. To load into HDRFusion is trivial and therefore not provided.
 	a. flickering AE dataset.
 	b. smooth AE dataset.
 		

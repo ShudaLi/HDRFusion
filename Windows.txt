@@ -1,6 +1,8 @@
 ﻿Compiling HDR Fusion
 (tested on Windows 10/8.1/8)
 19/03/2016
+A complete version of this instruction is availabe at https://docs.google.com/document/d/1rpf8fnBr1F24hV33mE4R1XmVPKjWhXm8BwxOE7z64d8/edit?usp=sharing
+
 Install Dependency
 
 

@@ -2,6 +2,9 @@
 (Tested on a desktop PC with NVidia Titan Black, 
 a laptop with NVidia Quadro 600, NVidia 680M and NVidia 860M)
 19/03/2016
+
+A complete version of this instruction is availabe at https://docs.google.com/document/d/1rSelSJ7gmnoTNrtqEUE-Em7zj31d97BSFnP2TS_AY1o/edit?usp=sharing
+
 Install Dependency
 
 
