@@ -13,11 +13,23 @@ in the source codes.
 
 -------------------------------------------------------------------------------
 
+## Dependences
+
+- OpenCV 3.0 (BSD license)
+- Eigen (GNU free software)
+- Sophus (GNU free software) 
+- OpenNI 2 (Apache license)
+- Boost (BSD License)
+- GLEW (Free commercial use)
+- CUDA
+
+-------------------------------------------------------------------------------
+
 ## Instructions on calibration
 
 1. compile project "multi_expo_caputurer" and "calc_crf" by following the following instructions.
-	a. refer to Windows.txt for compilation on windows
-	b. refer to Ubuntu.txt for compilation on ubuntu
+	a. refer to "calibration\Windows.txt" for compilation on windows
+	b. refer to "calibration\Ubuntu.txt" for compilation on ubuntu
 2. execute "multi_expo_caputurer" to capture multi-exposure images: 
 	a. a folder named as the serial number of the sensor will be created. The multi-exposure images are stored inside. 
 	b. check the captured images manually. By default, at each exposure time, 30 frames will be captured. They will be name as "exposure_time.no.png" (3.13.png represent exposure time 3, no 13). Due to the AE setting of the Xtion RGB-D sensor, some frames may captured at inaccurate exposure. These can be identified by comparing image brightness with other images catpured at the same exposure time. Find and remove those images.
@@ -38,14 +50,14 @@ in the source codes.
 ## Instructions on HDRFusion
 
 1. compile library "rgbd" and project "hdr_fusion_main" by following the documents:
-	a. refer to Windows.txt for compilation on windows
-	b. refer to Ubuntu.txt for compilation on ubuntu
+	a. refer to "hdr_fusion\Windows.txt" for compilation on windows
+	b. refer to "hdr_fusion\Ubuntu.txt" for compilation on ubuntu
 2. the real sample data sequences are available from https://lishuda.wordpress.com/dataset/.
 	a. bear.
 	b. sofa.
 	c. desk.
 	d. floor1.
-        e. floor2.
+    e. floor2.
 	f. whiteboard.
 	g. serial.yml.
 3. set up parameters 
