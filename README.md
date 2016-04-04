@@ -1,7 +1,19 @@
 # HDRFusion
-A C++ implementation of our paper "HDRFusion: HDR SLAM using a low-cost auto-exposure RGB-D sensor"
 
-For more details, please refer the project pages at https://lishuda.wordpress.com/
+## Introduction
+
+This is an open source C++ implementation of [1]. The 
+code has been tested on both Ubuntu and Windows platforms.
+
+[1] HDRFusion: HDR SLAM using a low-cost auto-exposure RGB-D sensor. 
+Li, S.; Handa, A.; Yang, Z.; Calway, A. arKiv.org, 2016. 
+
+Please consider citing above publication if you use this software in your own 
+work.
+
+The repository is maintained by Shuda Li (csxsl@bristol.ac.uk). Feel free to contact
+me, if you have any question or suggestions.For more details, please refer the 
+project pages at https://lishuda.wordpress.com/
 
 -------------------------------------------------------------------------------
 
@@ -71,7 +83,7 @@ in the source codes.
 3. set up parameters 
 
 - all parameters are loaded from a .yml file at "..//hdr_fusion_main//HDRFusionControl.yml"
-- download the sample ".oni" data and "serial.yml" file and put them under the folder "..//data//
+- download the sample ".oni" data and "serial.yml" file and put them under the folder "..//data//"
 - make sure the oniFile variable in "HDRFusionControl.yml" has been specified correctly.
   e.g. oniFile:  "..\\data\\bear.oni" 
   
