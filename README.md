@@ -67,8 +67,8 @@ in the source codes.
 
 - compile library "rgbd" and project "hdr_fusion_main" by following the documents:
 
-- refer to "hdr_fusion\Windows.txt" for compilation on windows
-- refer to "hdr_fusion\Ubuntu.txt" for compilation on ubuntu
+-- refer to "hdr_fusion\Windows.txt" for compilation on windows
+-- refer to "hdr_fusion\Ubuntu.txt" for compilation on ubuntu
 
 2. the real sample data sequences are available from https://lishuda.wordpress.com/dataset/.
 
