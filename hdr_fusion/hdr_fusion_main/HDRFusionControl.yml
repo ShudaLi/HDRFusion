@@ -1,0 +1,36 @@
+%YAML:1.0
+
+Result_folder: "..\\live_kinect\\result\\"
+#the location stores the recorded oni fise
+CamParamPathFileName: "..\\data\\Xtion"
+#default sensor internal parameters
+
+uResolution: 1
+# RGB-D frame resolution 0 VGA 1 QVGA
+uPyrHeight: 3
+# level of pyramid
+uCubicGridResolution: [ 256, 256, 256 ]
+# resolution of global volume
+fVolumeSize: 3
+# size of the global volume (meter), 
+# the up left front is  the origin
+# x-axis right
+# y-axis down
+# z-axis front
+InitialCamPos: [ 1.25, .55, .25 ]
+# initial camera position w.r.t. global volume
+
+bDisplayImage: 0
+bLightOn: 1
+nMode: 3
+#1 live mode 2 recorder mode 3 player mode
+
+#oniFile: "..\\data\\floor.oni" #InitialCamPos:[ 1.55, 1.25, .45  ]
+#oniFile: "..\\data\\whiteboard.oni" #InitialCamPos: [ 1.25, .75, .25 ]
+oniFile: "..\\data\\bear.oni" #InitialCamPos: [ 1.25, .55, .25 ]
+#oniFile: "..\\data\\desk.oni" #InitialCamPos: [ 1.55, 1.75, -.35 ]
+#oniFile: "..\\data\\sofa.oni" #InitialCamPos: [ .55, 1.05, -.25 ]
+
+
+
+

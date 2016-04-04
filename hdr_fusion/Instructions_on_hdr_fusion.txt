@@ -1,0 +1,32 @@
+Instructions on HDRFusion
+
+1. compile library "rgbd" and project "hdr_fusion_main" by following the documents:
+	a. refer to Windows.txt for compilation on windows
+	b. refer to Ubuntu.txt for compilation on ubuntu
+2. the real sample data sequences are available on request.
+	a. bear.
+	b. sofa.
+	c. desk.
+	d. floor1.
+        e. floor2.
+	f. whiteboard.
+	g. serial.yml.
+3. set up parameters 
+	a. all parameters are loaded from a .yml file at "..//hdr_fusion_main//HDRFusionControl.yml"
+	b. download the sample ".oni" data and "serial.yml" file and put them under the folder "..//data//
+	c. make sure the oniFile variable in "HDRFusionControl.yml" has been specified correctly.
+		oniFile:  "..\\data\\bear.oni" 
+4. execute "hdr_fusion_main"
+	functional keys: 
+	'0': align viewing postion with camera pose 
+	'7': switch on/off surfaces
+	'F5': switch on/off camera trajectory
+	'F6': switch on/off camera frustum
+	'p': pause the HDRFusion
+	'l': switch on/off colour
+	'T': switch on/off tone mapping operation
+5. synthetic dataset are also available on request. The synthetic datasets are stored ".png" files. To load into HDRFusion is trivial and therefore not provided.
+	a. flickering AE dataset.
+	b. smooth AE dataset.
+		
+ 

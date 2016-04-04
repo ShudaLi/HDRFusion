@@ -1,0 +1,144 @@
+﻿Compiling HDR Fusion
+(Tested on a desktop PC with NVidia Titan Black, 
+a laptop with NVidia Quadro 600, NVidia 680M and NVidia 860M)
+19/03/2016
+Install Dependency
+
+
+1. install the ubuntu 14.04 (x64) ; for laptop Kubuntu 15.04(x64)
+   1. create a bootable usb
+   2. format disk and install the ubuntu 
+2. install CUDA 7.5 with NVidia driver (license fee paid with the hardware)
+    a.  download CUDA 7.5 runfile installer package from here.
+    b.  follow the installation instructions
+		$sudo apt-get install build-essential
+		$mkdir ~/Downloads/nv_installers
+		$ cd ~/Downloads
+		$ ./cuda_7.0.28_linux_64.run -extract=~/Downloads/nv_installers
+		$ sudo apt-get --purge remove nvidia-*
+    c. press CTL+ ALT + F1 
+        log in 
+		$ sudo service lightdm stop
+		$ killall Xorg 
+		$ cd ~/Downloads/nv_installers
+		$ sudo ./NVIDIA-Linux-x86_64-331.62.run
+		$ sudo modprobe nvidia 
+		$ lsmod | grep nv
+		$ sudo ./cuda-linux64-rel-7.0.37-18176142.run
+		$ sudo ./cuda-samples-linux-7.0.37-18176142.run 
+		Install the cuda samples into /home/cuda/samples/
+    d. validate the cuda installation
+		$ cd /home/cuda/samples
+		$ cd 1_Utilities/deviceQuery 
+		$ make 
+		$./deviceQuery
+    e. setup link to correct GL driver
+		$ sudo ln -sf /usr/lib/libGL.so.340.76 /usr/lib/x86_64-linux-gnu/libGL.so
+		$ sudo ln -sf /usr/lib/libGL.so.340.76 /usr/lib/libGL.so
+    f. reboot
+    Note: to handle the nouveau problem, please follow these instructions.
+    Note: some modern laptops have compatibility issue with CUDA + Ubuntu configuration, the solution for that is to use Kubuntu 14.04/15.04. [reference]
+3. CMake
+    download cmake Linux x86_64 *.sh from its website
+    $ sudo sh cmake-3.3.0-rc3-Linux-x86_64
+4. install GLEW (allow commercial use)
+	$ sudo apt-get update
+	$ sudo apt-get install build-essential
+	$ sudo apt-get install libglew-dev
+5. install Boost (allow free commercial use)
+    $ sudo apt-get install libbz2-dev
+	a. Download from its websites 
+	b. extract to boost folder
+	c. $ cd boost
+	d. $ ./bootstrap.sh
+	e. $sudo ./bjam &> results.txt
+	f. $sudo ./bjam install
+6. OpenNI 2 (license fee paid with the hardware)
+	a. download from git
+	b. follow README
+	c. Note that if the error of “warnings are treated as errors” we need to 
+	d. $ make ALLOW_WARNINGS=1
+	e. add “LDFLAGS += -lpthread” into Source/Tools/NiViewer/Makefile
+	f. $sudo reboot
+	g. test the installation by running the NiViewer in “/Bin/x64Release/”
+	d. Note that sometimes the error complaining USB poped up, in that case, OpenNI 1.5 and Sensor must be installed.
+7. OpenNI1.5 (for fixing the bug related to usb issue of openNI2)
+	a.  acquire and compile OpenNI 1.5 (Git)
+	b. follow the instruction here
+	c.  acquire and compile Primesense (Git)
+	d. follow the instruction here
+8. Eigen (allow free commercial use)
+	a. $ sudo apt-get install libeigen3-dev
+	b. $ sudo apt-get install mercurial
+	c. $ hg clone https://bitbucket.org/eigen/eigen/
+	d $ ln -sf /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0 /usr/lib/x86_64-linux-gnu/libXi.so
+	e. $ ln -sf /usr/lib/x86_64-linux-gnu/libXmu.so.6.2.0 /usr/lib/x86_64-linux-gnu/libXmu.so
+	f. $ cd eigen
+	g. $ mkdir build
+	h. $ cd build
+	i. $ cmake ..
+	j. $ cmake-gui ..
+		remove BUILD_TESTING
+		remove EIGEN_SPLIT_LARGE_TESTS
+	k. $ sudo make install
+9. QT  (GNU GPL)
+	a. Download run file from Qt website and install it 
+	b. select “Source components”
+	c. Add qmake into system path by creating a shortcut 
+       $ sudo ln -sf /opt/Qt5.4/5.4/gcc_64/bin/qmake /usr/bin/qmake
+10. QGLViewer (GNU GPL)
+	a. Download from github
+	b. follow the instructions in INSTALL
+	c. $ cd libQGlViewer
+	d. $ qmake
+	e. $ make -j8
+11. Piccante 
+    a. Download from github
+	b. copy to a folder
+12. OpenCV (BSD free commercial)
+	a. Download from github and opencv_contrib
+	b. follow online instruction
+	c. $ cd opencv 
+	d. $ mkdir build
+	e. $ cd build
+	f. $ cmake ..
+	g. $ cmake-gui ..
+	h. select OPENMP and OPENGL in WITH
+	i. click Generate
+	j. $make -j8
+	k. $sudo make install
+13. Define environmental variables by editing “.bashrc” according to examples shown here.
+
+
+Compile the RGBD library and HDRFusionMain project
+
+
+1. clone from the repository
+	$ git clone project
+2. navigate to /rgbd_elocalisation/ folder 
+	$ cd rgbd_relocalisation/  
+3. edit line 23 in "hdr_fusion\CMakeLists.txt" according to the graphic cards according that you are using
+    set(CUDA_NVCC_FLAGS; -arch=sm_30) #-arch=sm_35) #-arch=sm_21) 
+
+NVidia Quadro 600
+	-arch=sm_21
+NVidia GTX680m /GTX680
+	-arch=sm_30
+NVidia GTX TITAN BLack 
+	-arch=sm_35
+NVidia GTX 960m 
+	-arch=sm_50
+	
+
+4. create build folder to hold all binary files 
+	a. $ mkdir build
+	b. $ cd build
+5. use cmake to create Makefile for compiling
+	a. $ cmake ..
+	b. $ cmake-gui ..
+	c. click “configure” button
+	d. click “generate” button
+6. compile the library and executable files
+    $ make -j8
+7. run the executable file
+    $ sudo ./HDRFusionMain

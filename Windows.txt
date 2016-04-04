@@ -1,0 +1,91 @@
+﻿Compiling HDR Fusion
+(tested on Windows 10/8.1/8)
+19/03/2016
+Install Dependency
+
+
+1. install windows 10/8/8.1/7
+   1. create a bootable usb
+   2. format disk and install the os
+2. install Visual Studio 2013 Professsional with update 5rc      
+3. install CUDA 7.5 with NVidia driver 
+              a.  download CUDA 7.5 runfile installer package from here.
+4. TortoiseGit 
+   1. Git for Window
+   2. Install TortoiseGit x64
+5. CMake
+        download cmake from here (windows 32bit) 
+6. install GLEW (allow commercial use)
+   1. Goto Glew Website
+   2. Download the up to date binaries.
+   3. Extract the zip file into the Dependency folder. For example “C:/all_libs/glew/”
+7. install Boost (allow commercial use)
+   1. Download from here
+   2. $bootstrap.bat
+   3. $bjam 
+8. OpenNI 2 (license fee paid with the hardware)
+   1. download from git
+   2. Follow the instructions in README
+9. Eigen (allow commercial use)
+   1. $ hg clone https://bitbucket.org/eigen/eigen/
+   2. $ cd eigen
+   3. $ mkdir build
+   4. $ cd build
+   5. $ cmake ..
+   6. $ cmake-gui ..
+        remove BUILD_TESTING
+        remove EIGEN_SPLIT_LARGE_TESTS
+        specify CMAKE_INSTALL_PREFIX
+   7. Build project “Install” in VS2013 to install it into your specified folder
+10. QT 
+   1. Download run file from Qt website and install it 
+   2. select “with OpenGL”
+11. QGLViewer
+   1. Download from github
+   2. follow the instructions in INSTALL
+12. Piccante 
+   1. Download from github 
+13. OpenCV
+   1. Download from github and opencv_contrib
+   2. follow online instruction
+   3. $ cd opencv 
+   4. $ mkdir build
+   5. $ cd build
+   6. $ cmake ..
+   7. $ cmake-gui ..
+   8. set CUDA_ARCH_BIN according the computational capability of the graphic card
+   9. select OPENMP and OPENGL in WITH
+   10. click Generate
+   11. open the OpenCV.sln with VS2013
+   12. compile and install the project
+14. Define environmental variables 
+
+
+
+
+Compile the RGBD library and HDRFusionMain project
+
+
+1. navigate to /hdr_fusion/ folder 
+   $ cd hdr_fusion/  
+2. edit line 27 in "hdr_fusion\CMakeLists.txt" for various graphic cards according to the table
+   set(CUDA_NVCC_FLAGS; -arch=sm_30) #-arch=sm_35) #-arch=sm_21) 
+
+NVidia Quadro 600
+	-arch=sm_21
+NVidia GTX680m /GTX680
+	-arch=sm_30
+NVidia GTX TITAN BLack 
+	-arch=sm_35
+	
+
+3. create build folder to hold all binary files 
+   1. $ mkdir build
+   2. $ cd build
+4. use cmake to create Makefile for compiling
+   1. $ cmake ..
+   2. $ cmake-gui ..
+   3. click “configure” button
+   4. click “generate” button
+5. compile the library and executable files by open the “.sln” file
+6. run the executable HDRFusionMain
