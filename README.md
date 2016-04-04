@@ -39,23 +39,23 @@ in the source codes.
 
 ## Instructions on calibration
 
-1. compile project "multi_expo_caputurer" and "calc_crf" by following the following instructions.
+- compile project "multi_expo_caputurer" and "calc_crf" by following the following instructions.
 
 	a. refer to "calibration\Windows.txt" for compilation on windows
 	b. refer to "calibration\Ubuntu.txt" for compilation on ubuntu
-2. execute "multi_expo_caputurer" to capture multi-exposure images: 
+- execute "multi_expo_caputurer" to capture multi-exposure images: 
 
 	a. a folder named as the serial number of the sensor will be created. The multi-exposure images are stored inside. 
 	b. check the captured images manually. By default, at each exposure time, 30 frames will be captured. They will be name as "exposure_time.no.png" (3.13.png represent exposure time 3, no 13). Due to the AE setting of the Xtion RGB-D sensor, some frames may captured at inaccurate exposure. These can be identified by comparing image brightness with other images catpured at the same exposure time. Find and remove those images.
 	c. copy the images into a folder, for example "/source"
-3. execute project "calc_crf" to calibrate inverse CRF.
+- execute project "calc_crf" to calibrate inverse CRF.
 
 	a. update the _path variable in the main function of "calc_crf":
 		_path = string("//source//");
 	b. compile and execute "calc_crf".
 	c. it will produce a "load_inv_crf.m" file. 
 	d. copy and paste "load_inv_crf.m" into the folder of "crf_calibration_matlab"
-4. execute matlab codes to calibrate crf, derivative of crf, noise level function and normalization factors
+- execute matlab codes to calibrate crf, derivative of crf, noise level function and normalization factors
 
 	a. use matlab to execute the "crf_calibration_main.m" in the folder of "crf_calibration_matlab"
 	b. it will produce a "crf.yml" where all parameters are stored in. 
@@ -65,7 +65,7 @@ in the source codes.
 	
 ## Instructions on HDRFusion
 
-1. compile library "rgbd" and project "hdr_fusion_main" by following the documents:
+- compile library "rgbd" and project "hdr_fusion_main" by following the documents:
 
 - refer to "hdr_fusion\Windows.txt" for compilation on windows
 - refer to "hdr_fusion\Ubuntu.txt" for compilation on ubuntu
