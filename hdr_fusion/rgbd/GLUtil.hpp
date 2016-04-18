@@ -86,11 +86,9 @@ public:
 	void gpuMapRGBResources(const cv::cuda::GpuMat& cvgmRGBs_);
 	GLuint gpuMapRgb2PixelBufferObj(const cv::cuda::GpuMat& cvgmRGB_ );
 	void errorDetectorGL() const;
-	void viewerGL();
 	void setInitialPos();
 	static void getRTFromWorld2CamCV(SO3Group<double>* pRw_, Eigen::Vector3d* pTw_);
 	//
-	void initLights();
 	void setOrthogonal();
 	static void printShortCudaDeviceInfo(int nDeviceNO_) ;
 	static int getCudaEnabledDeviceCount() ;

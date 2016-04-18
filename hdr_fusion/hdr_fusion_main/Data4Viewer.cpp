@@ -222,14 +222,7 @@ void Data4Viewer::drawGlobalView()
 		if (_pGL->_bEnableLighting)
 		{
 			glEnable(GL_LIGHTING); /* glEnable(GL_TEXTURE_2D);*/
-			float shininess = 15.0f;
 			float diffuseColor[3] = { 0.8f, 0.8f, 0.8f };
-			float specularColor[4] = { .2f, 0.2f, 0.2f, 1.0f };
-			// set specular and shiniess using glMaterial (gold-yellow)
-			glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess); // range 0 ~ 128
-			glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specularColor);
-			// set ambient and diffuse color using glColorMaterial (gold-yellow)
-			glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 			glColor3fv(diffuseColor);
 		}
 		_pVirtualGlobal->renderPtsInWorld(_pGL.get(), 0); //lvl0 but _uResolution is 1

@@ -240,7 +240,11 @@ void VideoSourceKinect::initPlayer(std::string& strPathFileName_){
 	nRetVal = _device.setImageRegistrationMode(IMAGE_REGISTRATION_DEPTH_TO_COLOR);
 	_device.setDepthColorSyncEnabled(FALSE);
 
-	const size_t last_slash_idx = strPathFileName_.rfind('//');
+	size_t last_slash_idx = strPathFileName_.rfind('//');
+	if (std::string::npos == last_slash_idx)
+	{
+		last_slash_idx = strPathFileName_.rfind('\\');
+	}
 	if (std::string::npos != last_slash_idx)
 	{
 		string directory = strPathFileName_.substr(0, last_slash_idx);

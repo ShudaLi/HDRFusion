@@ -187,33 +187,6 @@ void CKinFuTracker::storeCurrFrameSynthetic(CKeyFrame::tp_ptr pCurFrame_){
 	return;
 }
 
-//void CKinFuTracker::storeCurrFrameSynthetic(CKeyFrame::tp_ptr pCurFrame_){
-//	pCurFrame_->copyTo(&*_pRefFrame);
-//	//calc low for rotation estimation
-//	//Newcombe, R. A., Lovegrove, S. J., & Davison, A. J. (2011). DTAM : Dense Tracking and Mapping in Real-Time. In ICCV. Retrieved from http://www.youtube.com/watch?v=Df9WhgibCQA
-//	_n_rad_origin_2_ref = _n_rad_live[2].clone();
-//	_pIACurr->copyTo(*_pIAPrev);
-//
-//	if (_pRefFrame->_gRadiance.empty()){
-//		_pRefFrame->_gRadiance.create(_pRefFrame->_agPyrPts[0]->size(), CV_32FC3);
-//	}
-//	_pGlobalMap->gpuRayCastingNR(_pRefFrame->_pRGBCamera->getIntrinsics(0), _pRefFrame->_R_cw, _pRefFrame->_Tw,
-//		&*_pRefFrame->_agPyrPts[0], &*_pRefFrame->_agPyrNls[0], &_pRefFrame->_gRadiance); //if capturing is on, fineCast is off
-//	cuda::split(_pRefFrame->_gRadiance, _pIAPrev->_normalized_bgr);
-//
-//	if (_pRefFrame->_gRadiance.empty()) _pRefFrame->_gRadiance.create(_pRefFrame->_agPyrPts[0]->size(), CV_32FC3);
-//	_pGlobalMap->gpuRayCastingRadiance(_pRefFrame->_pRGBCamera->getIntrinsics(0), _pRefFrame->_R_cw, _pRefFrame->_Tw,
-//		&*_pRefFrame->_agPyrPts[0], &*_pRefFrame->_agPyrNls[0], &_pRefFrame->_gRadiance); //if capturing is on, fineCast is off
-//
-//	cuda::split(_pRefFrame->_gRadiance, _pIAPrev->_vRadianceBGR);
-//	constructRefePyr();
-//
-//	pCurFrame_->getPrjCfW(&_pose_refined_c_f_w);
-//	_v_T_cw_tracking.push_back(_pose_refined_c_f_w);
-//
-//	return;
-//}
-
 void CKinFuTracker::displayCameraPath() const{
 	vector<Eigen::Affine3d>::const_iterator cit = _v_T_cw_tracking.begin(); //from world to camera
 	

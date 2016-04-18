@@ -408,27 +408,6 @@ namespace btl{	namespace gl_util
 
 	}//init();
 
-	void CGLUtil::initLights()
-	{
-		// set up light colors (ambient, diffuse, specular)
-		GLfloat lightKa[] = {.2f, .2f, .2f, 1.0f};  // ambient light
-		GLfloat lightKd[] = {.7f, .7f, .7f, 1.0f};  // diffuse light
-		GLfloat lightKs[] = {1, 1, 1, 1};           // specular light
-
-		glLightfv(GL_LIGHT0, GL_AMBIENT, lightKa);
-		glLightfv(GL_LIGHT0, GL_DIFFUSE, lightKd);
-		glLightfv(GL_LIGHT0, GL_SPECULAR, lightKs);
-
-		// position the light
-		_aLight[0] = 2.0f;
-		_aLight[1] = 1.7f;
-		_aLight[2] =-0.2f;
-		_aLight[3] = 1.0f;
-		glLightfv(GL_LIGHT0, GL_POSITION, _aLight);
-
-		glEnable(GL_LIGHT0);                        // MUST enable each light source after configuration
-	}
-
 	void CGLUtil::releasePBO( GLuint uPBO_,cudaGraphicsResource *pResourcePixelBO_ ){
 		// unregister this buffer object with CUDA
 		//http://rickarkin.blogspot.co.uk/2012/03/use-pbo-to-share-buffer-between-cuda.html
@@ -610,52 +589,6 @@ namespace btl{	namespace gl_util
 		glOrtho(0,btl::kinect::__aDepthW[0], 0, btl::kinect::__aDepthH[0], -1, 1);
 
 		return;
-	}
-
-	void CGLUtil::viewerGL()
-	{
-		glMatrixMode(GL_MODELVIEW);
-		// load the matrix to set camera pose
-		glLoadMatrixd(_ModelViewGL.data());
-		
-		//rotation
-		SO3Group<double> eimRotation;
-		eimRotation = SO3Group<double>(AngleAxisd(_dXAngle*M_PI / 180., -Vector3d::UnitY())* AngleAxisd(_dYAngle*M_PI / 180., Vector3d::UnitX()));                         // 3. rotate horizontally
-		//translation
-		/*_dZoom = _dZoom < 0.1? 0.1: _dZoom;
-		_dZoom = _dZoom > 10? 10: _dZoom;*/
-
-		//get direction N pointing from camera center to the object centroid
-		Eigen::Affine3d M; M = _ModelViewGL;
-		Eigen::Vector3d T = M.translation();
-		SO3Group<double> R = M.linear();
-		Eigen::Vector3d C = R.inverse()*(-T);//camera centre
-		Eigen::Vector3d N = _Centroid - C;//from camera centre to object centroid
-		N = N/N.norm();//normalization
-
-		Eigen::Affine3d _eimManipulate; _eimManipulate.setIdentity();
-		_eimManipulate.translate( N*float(_dZoom) );//(N*(1-_dZoom));  //use camera movement toward object for zoom in/out effects
-		_eimManipulate.translate(_Centroid);  // 5. translate back to the original camera pose
-		//_eimManipulate.scale(s);				 // 4. zoom in/out, never use scale to simulate camera movement, it affects z-buffer capturing. use translation instead
-		_eimManipulate.rotate(eimRotation.matrix());		 // 2. rotate vertically // 3. rotate horizontally
-		_eimManipulate.translate(-_Centroid); // 1. translate the camera center to align with object centroid*/
-		glMultMatrixd(_eimManipulate.data());
-
-		/*	
-		lTranslated( _aCentroid[0], _aCentroid[1], _aCentroid[2] ); // 5. translate back to the original camera pose
-		_dZoom = _dZoom < 0.1? 0.1: _dZoom;
-		_dZoom = _dZoom > 10? 10: _dZoom;
-		glScaled( _dZoom, _dZoom, _dZoom );                      //  4. zoom in/out, 
-		if( btl::utility::BTL_GL == _eConvention )
-		glRotated ( _dXAngle, 0, 1 ,0 );                         // 3. rotate horizontally
-		else if( btl::utility::BTL_CV == _eConvention )			//mouse x-movement is the rotation around y-axis
-		glRotated ( _dXAngle, 0,-1 ,0 ); 
-		glRotated ( _dYAngle, 1, 0 ,0 );                             // 2. rotate vertically
-		glTranslated(-_aCentroid[0],-_aCentroid[1],-_aCentroid[2] ); // 1. translate the camera center to align with object centroid
-		*/
-
-		// light position in 3d
-		glLightfv(GL_LIGHT0, GL_POSITION, _aLight);
 	}
 
 	void CGLUtil::initCuda() {
